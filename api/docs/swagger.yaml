@@ -1,0 +1,1189 @@
+openapi: 3.0.3
+info:
+  title: StudentApp API
+  description: API для студенческого приложения с геймификацией
+  version: 2.0.0
+  contact:
+    name: Support
+    email: support@studentapp.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080/api
+    description: Development server
+  - url: https://api.studentapp.com/api
+    description: Production server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # ========== ПОЛЬЗОВАТЕЛИ ==========
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        login:
+          type: string
+          example: "23-ПМбо-014"
+        name:
+          type: string
+          example: "Иванов Иван Иванович"
+        role:
+          type: string
+          enum: [admin, teacher, staff, student]
+          example: "student"
+        group:
+          type: string
+          example: "23-ПМбо-1"
+        course:
+          type: integer
+          example: 3
+        faculty:
+          type: string
+          example: "ИВИТШ"
+        email:
+          type: string
+          example: "ivan@student.ru"
+        phone:
+          type: string
+          example: "+7 (999) 123-45-67"
+        total_xp:
+          type: integer
+          example: 1250
+        coins:
+          type: integer
+          example: 500
+
+    LoginRequest:
+      type: object
+      required:
+        - login
+        - password
+      properties:
+        login:
+          type: string
+          example: "23-ПМбо-014"
+        password:
+          type: string
+          example: "student123"
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIs..."
+        user:
+          $ref: '#/components/schemas/User'
+
+    # ========== РАСПИСАНИЕ ==========
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: integer
+        group_name:
+          type: string
+        discipline:
+          type: string
+        teacher:
+          type: string
+        start_time:
+          type: string
+          example: "11:50"
+        end_time:
+          type: string
+          example: "13:20"
+        date:
+          type: string
+          format: date
+        day_of_week:
+          type: integer
+        audience:
+          type: string
+        lesson_type:
+          type: string
+          enum: [lecture, lab, practice]
+        comment:
+          type: string
+
+    # ========== АЧИВКИ ==========
+    Achievement:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "🌙 Полуночник"
+        description:
+          type: string
+          example: "Сдать домашнее задание после 2 часов ночи"
+        xp:
+          type: integer
+          example: 50
+        icon:
+          type: string
+          example: "🌙"
+        rarity:
+          type: string
+          enum: [common, rare, epic, legendary]
+        category:
+          type: string
+        is_unlocked:
+          type: boolean
+
+    # ========== НОВОСТИ ==========
+    News:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        short_text:
+          type: string
+        full_text:
+          type: string
+        image_url:
+          type: string
+        category:
+          type: string
+        date:
+          type: string
+          format: date
+        is_pinned:
+          type: boolean
+        views:
+          type: integer
+
+    # ========== МЕРОПРИЯТИЯ ==========
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        short_text:
+          type: string
+        full_text:
+          type: string
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+        type:
+          type: string
+          enum: [sport, school, student]
+        category:
+          type: string
+        location:
+          type: string
+        price:
+          type: string
+        organizer:
+          type: string
+        available_spots:
+          type: integer
+        is_registered:
+          type: boolean
+
+    # ========== ДЕДЛАЙНЫ ==========
+    Deadline:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        subject:
+          type: string
+        due_date:
+          type: string
+          format: date
+        priority:
+          type: string
+          enum: [high, medium, low]
+        status:
+          type: string
+          enum: [pending, completed, overdue]
+        days_left:
+          type: integer
+
+    # ========== ДЕРЕВО НАВЫКОВ ==========
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        xp_cost:
+          type: integer
+        icon:
+          type: string
+        category:
+          type: string
+        is_unlocked:
+          type: boolean
+        can_unlock:
+          type: boolean
+
+    # ========== ЧАТЫ ==========
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [private, group, course]
+        last_message:
+          type: string
+        unread_count:
+          type: integer
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        user_name:
+          type: string
+        text:
+          type: string
+        is_mine:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+
+    # ========== КОИНЫ ==========
+    Balance:
+      type: object
+      properties:
+        balance:
+          type: integer
+
+    ShopItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        icon:
+          type: string
+
+    # ========== ОШИБКИ ==========
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Auth
+    description: Авторизация и регистрация
+  - name: Users
+    description: Управление пользователями
+  - name: Schedule
+    description: Расписание занятий
+  - name: Library
+    description: Библиотека
+  - name: News
+    description: Новости
+  - name: Events
+    description: Мероприятия (ДПО)
+  - name: Achievements
+    description: Ачивки и квесты
+  - name: SkillTree
+    description: Дерево навыков
+  - name: Deadlines
+    description: Дедлайны
+  - name: Checklist
+    description: Чек-лист первокурсника
+  - name: Exam
+    description: Генератор экзаменов
+  - name: Challenges
+    description: Вызовы с друзьями
+  - name: Games
+    description: Мини-игры
+  - name: Planner
+    description: Планер привычек
+  - name: Chats
+    description: Чаты и сообщения
+  - name: Notifications
+    description: Уведомления
+  - name: Coins
+    description: Коины и магазин
+
+paths:
+  # ========== AUTH ==========
+  /login:
+    post:
+      tags: [Auth]
+      summary: Вход в систему
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Неверный логин или пароль
+
+  /register:
+    post:
+      tags: [Auth]
+      summary: Регистрация нового пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - login
+                - password
+                - name
+              properties:
+                login:
+                  type: string
+                password:
+                  type: string
+                name:
+                  type: string
+                role:
+                  type: string
+                group:
+                  type: string
+      responses:
+        '201':
+          description: Пользователь создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  # ========== USERS ==========
+  /users/me:
+    get:
+      tags: [Users]
+      summary: Получить свой профиль
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Профиль пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags: [Users]
+      summary: Обновить свой профиль
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                telegram:
+                  type: string
+      responses:
+        '200':
+          description: Профиль обновлен
+
+  # ========== SCHEDULE ==========
+  /schedule:
+    get:
+      tags: [Schedule]
+      summary: Получить расписание
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: group_name
+          in: query
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Список занятий
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+
+    post:
+      tags: [Schedule]
+      summary: Добавить занятие (админ/учитель)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '201':
+          description: Занятие добавлено
+
+  # ========== ACHIEVEMENTS ==========
+  /achievements:
+    get:
+      tags: [Achievements]
+      summary: Получить все ачивки
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список ачивок
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Achievement'
+
+  /achievements/me:
+    get:
+      tags: [Achievements]
+      summary: Получить свои ачивки
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Мои ачивки
+
+  /achievements/me/xp:
+    get:
+      tags: [Achievements]
+      summary: Получить общее количество XP
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Количество XP
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_xp:
+                    type: integer
+
+  /achievements/quests:
+    get:
+      tags: [Achievements]
+      summary: Получить ежедневные квесты
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список квестов
+
+  /achievements/quests/{id}/complete:
+    post:
+      tags: [Achievements]
+      summary: Выполнить квест
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Квест выполнен
+
+  # ========== NEWS ==========
+  /news:
+    get:
+      tags: [News]
+      summary: Получить новости
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список новостей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/News'
+
+  /news/pinned:
+    get:
+      tags: [News]
+      summary: Получить закрепленные новости
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Закрепленные новости
+
+  # ========== EVENTS ==========
+  /events:
+    get:
+      tags: [Events]
+      summary: Получить мероприятия
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [sport, school, student]
+      responses:
+        '200':
+          description: Список мероприятий
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+
+  /events/{id}/register:
+    post:
+      tags: [Events]
+      summary: Записаться на мероприятие
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Запись успешна
+
+    delete:
+      tags: [Events]
+      summary: Отменить запись на мероприятие
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Запись отменена
+
+  # ========== SKILL TREE ==========
+  /skills:
+    get:
+      tags: [SkillTree]
+      summary: Получить дерево навыков
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [programming, softskills, career]
+      responses:
+        '200':
+          description: Дерево навыков
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Skill'
+
+  /skills/unlock:
+    post:
+      tags: [SkillTree]
+      summary: Открыть навык
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill_id:
+                  type: integer
+      responses:
+        '200':
+          description: Навык открыт
+
+  # ========== DEADLINES ==========
+  /deadlines:
+    get:
+      tags: [Deadlines]
+      summary: Получить дедлайны
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, completed, overdue]
+      responses:
+        '200':
+          description: Список дедлайнов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Deadline'
+
+  /deadlines/upcoming:
+    get:
+      tags: [Deadlines]
+      summary: Получить ближайшие дедлайны
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Ближайшие дедлайны
+
+  /deadlines/{id}/complete:
+    post:
+      tags: [Deadlines]
+      summary: Отметить дедлайн выполненным
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Дедлайн отмечен
+
+  # ========== CHECKLIST ==========
+  /checklist:
+    get:
+      tags: [Checklist]
+      summary: Получить чек-лист первокурсника
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Чек-лист
+
+  /checklist/complete:
+    post:
+      tags: [Checklist]
+      summary: Отметить пункт чек-листа выполненным
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: integer
+      responses:
+        '200':
+          description: Пункт отмечен
+
+  # ========== EXAM ==========
+  /exam/generate:
+    post:
+      tags: [Exam]
+      summary: Сгенерировать экзаменационные вопросы
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+                difficulty:
+                  type: string
+                  enum: [easy, medium, hard]
+                questions_count:
+                  type: integer
+      responses:
+        '200':
+          description: Список вопросов
+
+  /exam/submit:
+    post:
+      tags: [Exam]
+      summary: Отправить ответы на экзамен
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+                answers:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Результаты экзамена
+
+  # ========== CHALLENGES ==========
+  /challenges:
+    get:
+      tags: [Challenges]
+      summary: Получить список вызовов
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, upcoming, ended]
+      responses:
+        '200':
+          description: Список вызовов
+
+  /challenges/{id}/join:
+    post:
+      tags: [Challenges]
+      summary: Присоединиться к вызову
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Вы присоединились
+
+  /challenges/{id}/leaderboard:
+    get:
+      tags: [Challenges]
+      summary: Получить таблицу лидеров вызова
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Таблица лидеров
+
+  # ========== GAMES ==========
+  /games:
+    get:
+      tags: [Games]
+      summary: Получить список мини-игр
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список игр
+
+  /games/play:
+    post:
+      tags: [Games]
+      summary: Отправить результат игры
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                game_id:
+                  type: integer
+                score:
+                  type: integer
+      responses:
+        '200':
+          description: Результат сохранен
+
+  /games/{id}/leaderboard:
+    get:
+      tags: [Games]
+      summary: Таблица лидеров игры
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Таблица лидеров
+
+  # ========== PLANNER ==========
+  /planner/habits:
+    get:
+      tags: [Planner]
+      summary: Получить привычки
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список привычек
+
+  /planner/habits/complete:
+    post:
+      tags: [Planner]
+      summary: Отметить привычку выполненной
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                habit_id:
+                  type: integer
+      responses:
+        '200':
+          description: Привычка выполнена
+
+  # ========== CHATS ==========
+  /chats:
+    get:
+      tags: [Chats]
+      summary: Получить список чатов
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список чатов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+
+  /chats/{id}/messages:
+    get:
+      tags: [Chats]
+      summary: Получить сообщения чата
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Сообщения чата
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+
+    post:
+      tags: [Chats]
+      summary: Отправить сообщение
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                file_url:
+                  type: string
+      responses:
+        '201':
+          description: Сообщение отправлено
+
+  /chats/private/{userId}:
+    post:
+      tags: [Chats]
+      summary: Создать приватный чат
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Чат создан
+
+  /chats/group:
+    post:
+      tags: [Chats]
+      summary: Создать групповой чат
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                members:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '201':
+          description: Чат создан
+
+  # ========== NOTIFICATIONS ==========
+  /notifications:
+    get:
+      tags: [Notifications]
+      summary: Получить уведомления
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список уведомлений
+
+  /notifications/unread:
+    get:
+      tags: [Notifications]
+      summary: Количество непрочитанных уведомлений
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Количество
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unread_count:
+                    type: integer
+
+  /notifications/{id}/read:
+    put:
+      tags: [Notifications]
+      summary: Отметить уведомление прочитанным
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Отмечено
+
+  /notifications/read-all:
+    put:
+      tags: [Notifications]
+      summary: Отметить все уведомления прочитанными
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Все отмечены
+
+  # ========== COINS ==========
+  /coins/balance:
+    get:
+      tags: [Coins]
+      summary: Получить баланс коинов
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Баланс
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+
+  /coins/transactions:
+    get:
+      tags: [Coins]
+      summary: История транзакций
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список транзакций
+
+  /coins/shop:
+    get:
+      tags: [Coins]
+      summary: Товары в магазине
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Список товаров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShopItem'
+
+  /coins/shop/{itemId}/buy:
+    post:
+      tags: [Coins]
+      summary: Купить товар
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Товар куплен
+
+  # ========== WEBSOCKET ==========
+  /ws:
+    get:
+      tags: [WebSocket]
+      summary: WebSocket соединение для чатов
+      security:
+        - bearerAuth: []
+      responses:
+        '101':
+          description: Switching Protocols

@@ -1,0 +1,14 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "StudentApp API",
+    "description": "API для студенческого приложения с геймификацией",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api",
+      "description": "Development server"
+    }
+  ]
+}
