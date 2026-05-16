@@ -1,0 +1,50 @@
+.chats-container {
+  padding: 20px;
+}
+
+.chats-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.chats-list {
+  margin-top: 20px;
+}
+
+.chat-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.chat-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.chat-message {
+  color: #666;
+  font-size: 14px;
+}
+
+.chat-time {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+  .chats-container {
+    padding: 10px;
+  }
+  .chats-title {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "weekly": [
+    {
+      "id": 1,
+      "title": "🌙 Полуночник",
+      "description": "Сдать домашнее задание после 2 часов ночи",
+      "xp": 50,
+      "icon": "🌙",
+      "rarity": "common",
+      "condition": "submitHomeworkBetween(2, 5)",
+      "category": "Храбрецы"
+    },
+    {
+      "id": 2,
+      "title": "⚡ Спринтер",
+      "description": "Сдать задание за 30 минут до начала пары",
+      "xp": 40,
+      "icon": "⚡",
+      "rarity": "common",
+      "condition": "submitHomeworkBefore(classStart, 30)",
+      "category": "Храбрецы"
+    },
+    {
+      "id": 3,
+      "title": "🎯 Снайпер",
+      "description": "Получить 5 отличных оценок подряд",
+      "xp": 100,
+      "icon": "🎯",
+      "rarity": "rare",
+      "condition": "getConsecutiveGrades(5, 5)",
+      "category": "Отличники"
+    },
+    {
+      "id": 4,
+      "title": "📚 Книжный червь",
+      "description": "Посетить библиотеку 3 раза за неделю",
+      "xp": 30,
+      "icon": "📚",
+      "rarity": "common",
+      "condition": "visitLibrary(3)",
+      "category": "Активные"
+    },
+    {
+      "id": 5,
+      "title": "🏆 Идеальная неделя",
+      "description": "Сдать все домашние задания вовремя",
+      "xp": 150,
+      "icon": "🏆",
+      "rarity": "epic",
+      "condition": "submitAllHomeworkOnTime()",
+      "category": "Ответственные"
+    },
+    {
+      "id": 6,
+      "title": "🤝 Командный игрок",
+      "description": "Помочь сокурснику с домашним заданием",
+      "xp": 60,
+      "icon": "🤝",
+      "rarity": "rare",
+      "condition": "helpClassmate()",
+      "category": "Дружные"
+    }
+  ],
+  "monthly": [
+    {
+      "id": 7,
+      "title": "🔥 Стахановец",
+      "description": "Сдать все лабораторные работы досрочно",
+      "xp": 300,
+      "icon": "🔥",
+      "rarity": "epic",
+      "condition": "submitAllLabsEarly()",
+      "category": "Трудоголики"
+    },
+    {
+      "id": 8,
+      "title": "⭐ Абсолютный отличник",
+      "description": "Закончить месяц без троек",
+      "xp": 500,
+      "icon": "⭐",
+      "rarity": "legendary",
+      "condition": "noGradesBelow(4)",
+      "category": "Отличники"
+    },
+    {
+      "id": 9,
+      "title": "🏅 Марафонец",
+      "description": "Посетить 90% всех пар за месяц",
+      "xp": 200,
+      "icon": "🏅",
+      "rarity": "rare",
+      "condition": "attendanceOver(90)",
+      "category": "Ответственные"
+    },
+    {
+      "id": 10,
+      "title": "💎 Бриллиантовый студент",
+      "description": "Получить повышенную стипендию",
+      "xp": 1000,
+      "icon": "💎",
+      "rarity": "legendary",
+      "condition": "getScholarship('increased')",
+      "category": "Элита"
+    },
+    {
+      "id": 11,
+      "title": "🚀 Рекордсмен",
+      "description": "Сдать курсовую работу на 5 досрочно",
+      "xp": 400,
+      "icon": "🚀",
+      "rarity": "epic",
+      "condition": "submitTermPaperEarly(5)",
+      "category": "Трудоголики"
+    },
+    {
+      "id": 12,
+      "title": "🎓 Эрудит",
+      "description": "Принять участие в 3 научных конференциях",
+      "xp": 350,
+      "icon": "🎓",
+      "rarity": "epic",
+      "condition": "participateInConferences(3)",
+      "category": "Ученые"
+    }
+  ],
+  "random": [
+    {
+      "id": 13,
+      "title": "🍀 Везунчик",
+      "description": "Правильно ответить на вопрос без подготовки",
+      "xp": 25,
+      "icon": "🍀",
+      "rarity": "common",
+      "condition": "randomCorrectAnswer()",
+      "category": "Удачливые"
+    },
+    {
+      "id": 14,
+      "title": "🎨 Креативщик",
+      "description": "Оформить презентацию нестандартно",
+      "xp": 45,
+      "icon": "🎨",
+      "rarity": "rare",
+      "condition": "creativePresentation()",
+      "category": "Творческие"
+    },
+    {
+      "id": 15,
+      "title": "🗣️ Оратор",
+      "description": "Выступить с докладом перед аудиторией",
+      "xp": 55,
+      "icon": "🗣️",
+      "rarity": "rare",
+      "condition": "presentReport()",
+      "category": "Смелые"
+    },
+    {
+      "id": 16,
+      "title": "💡 Инсайт",
+      "description": "Найти ошибку в лекции преподавателя",
+      "xp": 70,
+      "icon": "💡",
+      "rarity": "epic",
+      "condition": "findMistakeInLecture()",
+      "category": "Внимательные"
+    },
+    {
+      "id": 17,
+      "title": "👑 Перфекционист",
+      "description": "Переделать задание 3 раза для идеала",
+      "xp": 80,
+      "icon": "👑",
+      "rarity": "epic",
+      "condition": "reworkTask(3)",
+      "category": "Перфекционисты"
+    },
+    {
+      "id": 18,
+      "title": "🎲 Авантюрист",
+      "description": "Сдать задание в последнюю минуту дедлайна",
+      "xp": 35,
+      "icon": "🎲",
+      "rarity": "common",
+      "condition": "submitLastMinute()",
+      "category": "Экстремалы"
+    },
+    {
+      "id": 19,
+      "title": "📝 Конспектист",
+      "description": "Написать конспект на 10 страниц",
+      "xp": 30,
+      "icon": "📝",
+      "rarity": "common",
+      "condition": "writeNotes(10)",
+      "category": "Старательные"
+    },
+    {
+      "id": 20,
+      "title": "🤔 Философ",
+      "description": "Задать умный вопрос на лекции",
+      "xp": 40,
+      "icon": "🤔",
+      "rarity": "rare",
+      "condition": "askSmartQuestion()",
+      "category": "Любознательные"
+    },
+    {
+      "id": 21,
+      "title": "⚙️ Технарь",
+      "description": "Решить сложную задачу без ошибок",
+      "xp": 65,
+      "icon": "⚙️",
+      "rarity": "rare",
+      "condition": "solveHardTask()",
+      "category": "Умники"
+    },
+    {
+      "id": 22,
+      "title": "🌐 Полиглот",
+      "description": "Сдать английский на 5",
+      "xp": 50,
+      "icon": "🌐",
+      "rarity": "rare",
+      "condition": "getEnglishGrade(5)",
+      "category": "Лингвисты"
+    }
+  ]
+}

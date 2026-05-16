@@ -1,0 +1,158 @@
+/* Общие стили для всех страниц учителя */
+.teacher-page {
+  padding: 24px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+}
+
+.teacher-header {
+  margin-bottom: 32px;
+}
+
+.teacher-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.teacher-title-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+}
+
+.teacher-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-left: 56px;
+}
+
+/* Карточки */
+.teacher-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* Формы */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8eef2;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4facfe;
+}
+
+/* Кнопки */
+.btn-primary {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #e8f0fe;
+  color: #4facfe;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #4facfe;
+  color: white;
+}
+
+.btn-danger {
+  background: #ffebee;
+  color: #f44336;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .teacher-page {
+    padding: 16px;
+  }
+  
+  .teacher-title {
+    font-size: 22px;
+  }
+  
+  .teacher-title-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  
+  .teacher-subtitle {
+    margin-left: 48px;
+    font-size: 12px;
+  }
+}

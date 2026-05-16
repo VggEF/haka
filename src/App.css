@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background-color: #f5f7fa;
+}
+
+/* ГЛАВНЫЙ КОНТЕЙНЕР - заставляет сайдбар и контент быть в ряд */
+.app-container {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* САЙДБАР - фиксированная ширина слева */
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* КОНТЕНТ - занимает ВСЁ оставшееся место справа */
+.app-content {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #f5f7fa;
+}

@@ -1,0 +1,45 @@
+.library-container {
+  padding: 20px;
+}
+
+.library-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.library-list {
+  margin-top: 20px;
+}
+
+.book-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.book-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-author {
+  color: #666;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.book-status {
+  color: #4caf50;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+  .library-container {
+    padding: 10px;
+  }
+  .library-title {
+    font-size: 20px;
+  }
+}

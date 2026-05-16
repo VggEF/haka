@@ -1,0 +1,375 @@
+.planner-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.planner-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.planner-subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.planner-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 16px;
+  text-align: center;
+  flex: 1;
+  max-width: 200px;
+}
+
+.stat-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+  display: block;
+}
+
+.stat-label {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Список привычек */
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.habit-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #4caf50;
+}
+
+.habit-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.habit-info {
+  flex: 1;
+}
+
+.habit-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.habit-streak {
+  font-size: 13px;
+  color: #ff9800;
+  margin-bottom: 4px;
+}
+
+.habit-streak .streak-fire {
+  font-size: 14px;
+}
+
+.habit-xp {
+  font-size: 12px;
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.habit-btn {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.habit-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Чек-лист дня */
+.daily-checklist {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.daily-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.daily-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.daily-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.daily-item:hover {
+  background: #f0f2f5;
+}
+
+.daily-item.completed {
+  opacity: 0.7;
+  background: #e8f5e9;
+}
+
+.daily-checkbox {
+  font-size: 22px;
+}
+
+.daily-info {
+  flex: 1;
+}
+
+.daily-task {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.daily-xp {
+  font-size: 11px;
+  color: #4caf50;
+}
+
+.daily-completed-badge {
+  font-size: 20px;
+}
+
+/* Прогресс недели */
+.week-progress {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.week-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.week-bars {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.week-day {
+  flex: 1;
+  text-align: center;
+}
+
+.day-name {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.day-bar {
+  height: 60px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.day-fill {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 8px;
+  transition: height 0.3s;
+}
+
+.day-percent {
+  font-size: 10px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Статистика */
+.planner-statistics {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stat-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Мотивационная цитата */
+.motivation-quote {
+  background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.quote-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.quote-text {
+  font-size: 14px;
+  color: #e65100;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.quote-author {
+  font-size: 11px;
+  color: #bf360c;
+  opacity: 0.8;
+}
+
+/* Кнопка сброса */
+.reset-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f0f0f0;
+  color: #666;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  background: #e0e0e0;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .planner-container {
+    padding: 12px;
+  }
+  
+  .planner-title {
+    font-size: 22px;
+  }
+  
+  .planner-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .habit-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .habit-btn {
+    width: 100%;
+  }
+  
+  .week-bars {
+    gap: 4px;
+  }
+  
+  .day-name {
+    font-size: 9px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .daily-item {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,135 @@
+.skilltree-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skilltree-title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.skilltree-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 24px;
+  display: block;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.skilltree-branches {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.branch-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 40px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.branch-btn.active {
+  color: white;
+  transform: scale(1.05);
+}
+
+.skilltree-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-node {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.skill-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.skill-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.skill-card.can-unlock {
+  border-color: #4caf50;
+  animation: pulse 1.5s infinite;
+}
+
+.skill-card.unlocked {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+}
+
+.skill-icon {
+  font-size: 40px;
+}
+
+.skill-info {
+  flex: 1;
+}
+
+.skill-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.skill-xp {
+  font-size: 12px;
+  color: #ff9800;
+}
+
+.unlocked-badge, .can-unlock-badge {
+  font-size: 20px;
+}
+
+.skill-connector {
+  width: 40px;
+  height: 2px;
+  background: #ddd;
+}
+
+.skill-connector.active {
+  background: #4caf50;
+}
+
+@keyframes pulse {
+  0%, 100% { border-color: #4caf50; }
+  50% { border-color: #ff9800; }
+}
